@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    unicode-bidi: isolate;
+    color: blue
+}
+</style>
+<body>
+    <div class='container'>
+        <h1>Notes</h1>
+        <div id="notes">
+            <ul class="notes"></ul>
+        </div>
+        <form action="/exampleapp/new_note" method="POST" onsubmit="addItem(); return false;">
+            <input type="text" name="note" id="note">
+            <br>
+            <input type="submit" value="Save">
+        </form>
+    </div>
+    <script>
+        function addItem() {
+            // Obtain entry value
+            var itemText = document.getElementById("note").value;
+            
+            // Create a new element on the list
+            var li = document.createElement("li");
+            
+            // Asigne  the text to the new element on the list
+            li.textContent = itemText;
+            
+            // Add the new element to the list
+            document.querySelector("ul.notes").appendChild(li);
+            
+            // Clean the entry to be able to writte down a new word
+            document.getElementById("note").value = "";
+        }
+    </script>
+</body>
+</html>
