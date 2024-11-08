@@ -1,33 +1,45 @@
-import React from 'react'
 
-
-const Hello = (props) => {
-
-  console.log(props)
-  return (
-    <div>
-    <p>
-
-      Hello {props.name}, you are {props.age} years old
-      </p>
-    </div>
-  )
-}
-
+//we define App components
 const App = () => {
+  const course ={ 
+   name: 'Half Stack application development',
+   parts : [
+  {
+    name: 'Fundamentals of React',
+    exercises: 10
+  },
+  
+   {
+    name: 'Using props to pass data',
+    exercises: 7
+  },
+  
+    {
+    name: 'State of a component',
+    exercises: 14
+  }
+]
+  }
+//We define here the way we want everything to appear at the page
+  // we define the Header component
+const Header = course.parts.reduce((sum,part) => sum+part.exercises,0)
+return (
+  <div>
+    <h1>{course.name}</h1>
+    
+      {course.parts.map((part, index) => (
+        <li key={index}>
+          {part.name}  {part.exercises} 
+            
+         </li>
+   
+      ))}
+      <p>Nomber of exercises: {Header}</p>    
+   
+     </div>
+);
 
-  const name = 'Peter'
-  const age = 10
 
- return (
-   <div>
-     <h1>Greetings</h1>
-
-     <Hello name='Maya' age={26 + 10} />
-    <Hello name={name} age={age} />
-    </div>
- )
 }
 
-//este export es necesario para que la app funcione
 export default App
